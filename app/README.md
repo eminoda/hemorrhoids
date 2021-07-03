@@ -1,24 +1,9 @@
-# app
+## 问题记录
 
-## Project setup
-```
-npm install
-```
+- drag
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+  - [ ] 有哪些拖拽事件
+  - [ ] effectAllowed, dropEffect 区别
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- vue
+  - [ ] 动态组件运用
