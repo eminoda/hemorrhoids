@@ -3,6 +3,7 @@ class ElementSchema {
         this.elTag = options.elTag // div | span | img
         this.elStyle = {}
         this.elEvents = {}
+        this.elAttrs = {}
         // 定位
         this.position = options.position
         // 长宽

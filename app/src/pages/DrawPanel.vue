@@ -4,10 +4,10 @@
       <element-menus />
     </el-aside>
     <el-main>
-      <element-panel />
+      <element-panel @move="handleElementMove" />
     </el-main>
-    <el-aside width="200px">
-      <element-schema />
+    <el-aside width="400px">
+      <element-setting :schema="schema" @change="changeHandle" />
     </el-aside>
   </el-container>
 </template>
@@ -15,10 +15,31 @@
 <script>
 import ElementMenus from '../components/DrawPanel/ElementMenus'
 import ElementPanel from '../components/DrawPanel/ElementPanel'
-import ElementSchema from '../components/DrawPanel/ElementSchema'
+import ElementSetting from '../components/DrawPanel/ElementSetting'
+// import FormInputSchema from '../components/DrawPanel/schema/FormInputSchema'
+
 export default {
   components: {
-    ElementMenus, ElementPanel, ElementSchema
+    ElementMenus, ElementPanel, ElementSetting
+  },
+  data () {
+    return {
+      schema: null
+      // schema: new FormInputSchema({
+      //   elTag: 'el-input',
+      //   label: 'label'
+      // })
+    }
+  },
+  methods: {
+    handleElementMove (schema) {
+      this.schema = schema
+    },
+    changeHandle (schema) {
+      console.log(schema)
+    }
+  },
+  created () {
   }
 }
 </script>

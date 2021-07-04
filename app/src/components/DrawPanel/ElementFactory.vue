@@ -28,8 +28,13 @@ export default {
     renderShapeBox (elementVNode, schema) {
       return this.$createElement('shape-box', {
         props: {
-          pointer: schema.position
+          schema
         },
+        on: {
+          move: (schema) => {
+            this.$emit('move', schema)
+          }
+        }
       }, [elementVNode])
     },
     renderElementWithChildren (schema) {
@@ -40,7 +45,6 @@ export default {
         if (this.elTag == 'el-select') {
           optionElTag = 'el-option'
         } else {
-          console.log(1)
           optionElTag = 'el-' + optionMatchElTag.find(item => this.elTag.includes(item))
         }
         schema.options.forEach(option => {
@@ -60,7 +64,7 @@ export default {
       return this.renderShapeBox(elementVNode, schema)
     },
     renderElement (schema) {
-      const elementVNode = this.$createElement(this.elTag, { props: schema.elEvents, attrs: schema.elEvents })
+      const elementVNode = this.$createElement(this.elTag, { props: schema.elAttrs, attrs: schema.elAttrs })
       return this.renderShapeBox(elementVNode, schema)
     },
     compile () {

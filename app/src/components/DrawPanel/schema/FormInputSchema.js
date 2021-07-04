@@ -4,8 +4,14 @@ class FormInputSchema extends ElementSchema {
     constructor(options = {}) {
         super(options);
         this.elTag = 'el-input'
+        this.elAttrs = {
+            placeholder:
+                options.elAttrs ? options.elAttrs.placeholder : '请输入'
+        }
         this.elEvents = {
-            placeholder: '请输入'
+            blur: null,
+            focus: null,
+            change: `function(value){\n\tconsole.log(value);\n}`
         }
     }
 }

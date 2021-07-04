@@ -21,13 +21,10 @@
 <script>
 export default {
   props: {
-    pointer: {
+    schema: {
       type: Object,
       default () {
-        return {
-          x: 0,
-          y: 0
-        }
+        return {}
       }
     }
   },
@@ -56,6 +53,7 @@ export default {
   methods: {
     handleMoveStart (event) {
       // console.log('handleMoveStart');
+      this.$emit('move', this.schema)
       this.isMove = true
       this.moveStart.x = event.x - this.moveEnd.x
       this.moveStart.y = event.y - this.moveEnd.y
@@ -80,8 +78,9 @@ export default {
     }
   },
   mounted () {
-    this.moveEnd.x = this.pointer.x
-    this.moveEnd.y = this.pointer.y
+    console.log(this.schema)
+    this.moveEnd.x = this.schema.position.x
+    this.moveEnd.y = this.schema.position.y
   }
 }
 </script>

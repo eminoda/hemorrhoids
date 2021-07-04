@@ -31,6 +31,11 @@ export default {
         props: {
           elTag,
           pointer: this.getPointer(event, offset)
+        },
+        on: {
+          move: (schema) => {
+            this.$emit('move', schema)
+          }
         }
       })
       this.vNodes.push(el)
