@@ -9,9 +9,12 @@ class FormInputSchema extends ElementSchema {
                 options.elAttrs ? options.elAttrs.placeholder : '请输入'
         }
         this.elEvents = {
-            blur: null,
-            focus: null,
-            change: `function(value){\n\tconsole.log(value);\n}`
+            blur: {},
+            focus: {},
+            change: {
+                params: ['event'],
+                body: 'return event',
+            }
         }
     }
 }

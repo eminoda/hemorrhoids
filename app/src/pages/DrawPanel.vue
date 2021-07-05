@@ -16,7 +16,7 @@
 import ElementMenus from '../components/DrawPanel/ElementMenus'
 import ElementPanel from '../components/DrawPanel/ElementPanel'
 import ElementSetting from '../components/DrawPanel/ElementSetting'
-// import FormInputSchema from '../components/DrawPanel/schema/FormInputSchema'
+import FormInputSchema from  '../components/DrawPanel/schema/FormInputSchema'
 
 export default {
   components: {
@@ -24,11 +24,11 @@ export default {
   },
   data () {
     return {
-      schema: null
-      // schema: new FormInputSchema({
-      //   elTag: 'el-input',
-      //   label: 'label'
-      // })
+      // schema: null
+      schema: new FormInputSchema({
+        elTag: 'el-input',
+        label: 'label'
+      })
     }
   },
   methods: {

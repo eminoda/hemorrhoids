@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div><el-button @click="exportHandle">导出</el-button></div>
     <template v-if="schema">
       <el-card header="基本信息">
         <el-form
@@ -43,7 +44,7 @@
               type="textarea"
               :rows="5"
               placeholder="请输入代码"
-              v-model="schema.elEvents[name]"
+              v-model="schema.elEvents[name].body"
             >
             </el-input>
           </el-form-item>
@@ -77,6 +78,39 @@ export default {
     }
   },
   methods: {
+    exportHandle () {
+      let attrs = ''
+      for (let key in this.schema.elAttrs) {
+        const value = this.schema.elAttrs[key]
+        attrs = attrs + `${key}='${value}' `
+      }
+      const eventProps = []
+      const eventMethods = []
+      for (let key in this.schema.elEvents) {
+        const event = this.schema.elEvents[key]
+        if (event.body) {
+          eventProps.push(`@${key}='${key}Handle'`)
+          eventMethods.push(`${key}Handle(${event.params.join(',')}){
+            ${event.body}
+          }`)
+        }
+      }
+      console.log(eventMethods)
+      const result =
+        `
+        <template>
+          <${this.schema.elTag} ${attrs} ${eventProps.join(' ')}><\\/${this.schema.elTag}>
+        <\\/template>
+        <script>
+          export default {
+            methods:{
+              ${eventMethods.join(',\n')}
+            }
+          }
+        <\\/script>
+      `
+      console.log(result)
+    }
   }
 }
 </script>
